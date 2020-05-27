@@ -11,9 +11,10 @@
         let closest = [...sections].map(e => ({
             dist: window.scrollY - e.offsetTop,
             id: e.id
-        })).sort((a, b) => Math.abs(a.dist) - Math.abs(b.dist))[0];
+        })).sort((a, b) => a.dist - b.dist)
+            .find(a => a.dist >= -75);
 
-        closest = closest.dist >= -100 ? closest : {};
+        closest = closest || {};
 
         [...navitems].forEach(e =>
             e.hash.substr(1) == closest.id
